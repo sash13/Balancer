@@ -2,6 +2,9 @@ import Tkinter as tk
 import math
 from uart import *
 
+WIDTH = 400
+HEIGHT = 400
+
 class Application(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master, width=400, height=400)
@@ -18,15 +21,15 @@ class Application(tk.Frame):
 
     def createWidgets(self):
         self.regulators = tk.LabelFrame(self, text="Regulator", padx=5, pady=5)
-        self.regulators.grid(row = 1, column = 1, padx=10, pady=10, sticky="WEN")
+        self.regulators.grid(row = 1, column = 2, padx=10, pady=10, sticky="WEN")
 
         self.setParametrs = tk.LabelFrame(self, text="Set Parameter", padx=5, pady=5)
-        self.setParametrs.grid(row = 2, column = 1, padx=10, pady=10, sticky="WENS")
+        self.setParametrs.grid(row = 2, column = 2, padx=10, pady=10, sticky="WENS")
 
         self.visCanvas = tk.LabelFrame(self, text="Stend visualization", padx=5, pady=5)
-        self.visCanvas.grid(row = 1, column = 2,rowspan=2,  padx=10, pady=10, sticky="WENS")
+        self.visCanvas.grid(row = 1, column = 1,rowspan=3,  padx=10, pady=10, sticky="WENS")
 
-        self.canvas = tk.Canvas(self.visCanvas, width=200, height=200, bg = "white")
+        self.canvas = tk.Canvas(self.visCanvas, width=WIDTH, height=HEIGHT, bg = "white")
         self.canvas.pack()
 
         self.infoStend = tk.LabelFrame(self, text="Stend Info", padx=5, pady=5)
@@ -155,6 +158,7 @@ class Line(tk.Frame):
         self.parent.create_line(int(self.cor[0]), int(self.cor[1]),
                                 int(self.cor2[0]), int(self.cor2[1]), width=width, fill=fill, dash=dash)        
 master = tk.Tk()
+master.resizable(width=0, height=0)
 app = Application(master)
 app.master.title('Stend control')
 app.mainloop()
